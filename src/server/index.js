@@ -30,22 +30,15 @@ app.get('/', function (req, res) {
 })
 
 // designates what port the app will listen to for incoming requests
+// Note: I use here 8081 to be different to the express port that is 8080
 app.listen(8081, function () {
     console.log('Example app listening on port 8081!')
 })
 
+
+// receiving with a post from the client an url or txt used after to do a fetch post to the meaningcloud API
 app.post('/sendUrlOrText', function (req,res){
     console.log("receving post")
-    /*newEntry = {
-      temperature: req.body.temp,
-      date: req.body.date,
-      user_response: req.body.feel
-    }*/
-    //projectData["urlOrText"]=req.body.urlOrText
-    //console.log(req)
-  
-    //console.log(req.body)
-
 
     const formData = new FormData()
     formData.append('key', process.env.API_ID)
@@ -59,21 +52,30 @@ app.post('/sendUrlOrText', function (req,res){
     .then(r => r.json())
     .then(data => {
         console.log(data)
-        res.send(data)
+        usefulData = extractUsefulData(data)
+        res.send(usefulData)
     })
 })
 
-app.get('/test', function (req, res) {
-    //üres.send(mockAPIResponse)
-    
-    const formData = new FormData()
-    formData.append('key', process.env.API_ID)
-    formData.append('txt', 'ciao')
+// To decouple the API and our client, I elaborate here in the server what I get from the API 
+// and I return to the client an other object filled only with the useful data for our case
+function extractUsefulData(data){
+    console.log("in extractUsefulData")
+    //console.log(data)
+    //console.log(data["confidence"])
+    //console.log(data["irony"])
+    //console.log(data["subjectivity"])
+    console.log(data["sentence_list"][0]["text"])
+    usefulData = {}
+    usefulData["confidence"]= data["confidence"]
+    usefulData["irony"]= data["irony"]
+    usefulData["subjectivity"]= data["subjectivity"]
+    usefulData["text"]= data["sentence_list"][0]["text"]
+    return usefulData
+}
 
-    fetch('https://api.meaningcloud.com/sentiment-2.1', {
-        method: 'POST',
-        body: formData
-    })
+app.get('/test', function (req, res) {
+    res.send(mockAPIResponse)
 .then(r => r.json())
 .then(data => {
   console.log(data)
