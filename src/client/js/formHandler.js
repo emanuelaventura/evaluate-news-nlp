@@ -10,11 +10,11 @@ function handleSubmit(event) {
         .then(function(res){
 
             console.log("::: Form Submitted :::")
-            //fetch('http://localhost:8080/test')
-            //.then(res => res.json())
-            //.then(function(res) {
-                document.getElementById('results').innerHTML = JSON.stringify(res)
-            //})
+           
+            document.getElementById('confidence').innerHTML = 'Confidence: ' + JSON.stringify(res["confidence"])
+            document.getElementById('irony').innerHTML = 'Irony: ' + JSON.stringify(res["irony"])
+            document.getElementById('subjectivity').innerHTML ='Subjectivity: '+ JSON.stringify(res["subjectivity"])
+            document.getElementById('global-polarity').innerHTML = 'Global polarity: '+JSON.stringify(res["polarity"])
         })
     }
 }
