@@ -4,18 +4,19 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value
-    Client.checkForName(formText)
+    if (Client.checkForName(formText) == 0) {
+        console.log("inside ")
+        postData('http://localhost:8081/sendUrlOrText', {'urlOrText':formText} )
+        .then(function(res){
 
-    postData('http://localhost:8081/sendUrlOrText', {'urlOrText':formText} )
-    .then(function(res){
-
-        console.log("::: Form Submitted :::")
-        //fetch('http://localhost:8080/test')
-        //.then(res => res.json())
-        //.then(function(res) {
-            document.getElementById('results').innerHTML = JSON.stringify(res)
-        //})
-    })
+            console.log("::: Form Submitted :::")
+            //fetch('http://localhost:8080/test')
+            //.then(res => res.json())
+            //.then(function(res) {
+                document.getElementById('results').innerHTML = JSON.stringify(res)
+            //})
+        })
+    }
 }
 
 export { handleSubmit }

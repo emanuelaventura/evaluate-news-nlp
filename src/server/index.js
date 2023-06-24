@@ -71,7 +71,7 @@ function extractUsefulData(data){
     usefulData["irony"]= data["irony"]
     usefulData["subjectivity"]= data["subjectivity"]
     usefulData["global_polarity"]= polarityToString(data["score_tag"])
-    usefulData["text"]= data["sentence_list"][0]["text"]
+    //usefulData["text"]= data["sentence_list"][0]["text"]
     return usefulData
 }
 
@@ -91,12 +91,7 @@ function polarityToString(polarity) {
           return "without polarity"
       }
 }
-/*P+: 
-P: positive
-NEU: neutral
-N: negative
-N+: strong negative
-NONE: without polarity*/
+
 
 app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
