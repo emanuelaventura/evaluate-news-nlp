@@ -64,15 +64,39 @@ function extractUsefulData(data){
     //console.log(data)
     //console.log(data["confidence"])
     //console.log(data["irony"])
-    //console.log(data["subjectivity"])
-    console.log(data["sentence_list"][0]["text"])
+    console.log(data["score_tag"])
+    //console.log(data["sentence_list"][0]["text"])
     usefulData = {}
     usefulData["confidence"]= data["confidence"]
     usefulData["irony"]= data["irony"]
     usefulData["subjectivity"]= data["subjectivity"]
+    usefulData["global_polarity"]= polarityToString(data["score_tag"])
     usefulData["text"]= data["sentence_list"][0]["text"]
     return usefulData
 }
+
+function polarityToString(polarity) {
+    switch (polarity) {
+        case 'P+':
+          return "strong positive"    
+        case 'NEU':
+            return "neutral"      
+        case 'N':
+            return "negative"      
+        case 'N+':
+            return "strong negative"
+        case 'NONE':
+            return "without polarity"      
+        default:
+          return "without polarity"
+      }
+}
+/*P+: 
+P: positive
+NEU: neutral
+N: negative
+N+: strong negative
+NONE: without polarity*/
 
 app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
