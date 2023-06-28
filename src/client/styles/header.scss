@@ -2,4 +2,18 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 10px 40px;
+    background-color: #5be3b2;
+
+    .header-logo {
+        height: 40px;
+        margin: 1em;
+        border-radius: 50%;
+        
+    }
+
+    .header-title {
+        font-size: 2em;
+        color: black;
+    }
 }
+

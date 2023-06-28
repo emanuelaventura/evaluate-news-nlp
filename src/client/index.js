@@ -15,3 +15,9 @@ export {
     checkForName,
     handleSubmit
 }
+
+import logo from './images/logo.png';
+
+var logoImg = document.getElementsByClassName('header-logo')[0];
+
+logoImg.src = logo;
