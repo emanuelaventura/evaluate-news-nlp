@@ -4,7 +4,7 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value
-    if (Client.checkForName(formText) == 0) {
+    if (Client.checkForEmptyText(formText) == 0) {
         console.log("inside ")
         postData('http://localhost:8081/sendUrlOrText', {'urlOrText':formText} )
         .then(function(res){
