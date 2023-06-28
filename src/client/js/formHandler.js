@@ -14,7 +14,7 @@ function handleSubmit(event) {
             document.getElementById('confidence').innerHTML = 'Confidence: ' + JSON.stringify(res["confidence"])
             document.getElementById('irony').innerHTML = 'Irony: ' + JSON.stringify(res["irony"])
             document.getElementById('subjectivity').innerHTML ='Subjectivity: '+ JSON.stringify(res["subjectivity"])
-            document.getElementById('global-polarity').innerHTML = 'Global polarity: '+JSON.stringify(res["polarity"])
+            document.getElementById('global-polarity').innerHTML = 'Global polarity: '+JSON.stringify(res["global_polarity"])
         })
     }
 }
