@@ -32,7 +32,7 @@ app.get('/', function (req, res) {
 // designates what port the app will listen to for incoming requests
 // Note: I use here 8081 to be different to the express port that is 8080
 app.listen(8081, function () {
-    console.log('Example app listening on port 8081!')
+    console.log('TextAnalyzer Server listening on port 8081!')
 })
 
 
